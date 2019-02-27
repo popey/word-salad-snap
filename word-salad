@@ -49,7 +49,7 @@ function create_password {
     NUMBERS=( 1 2 3 4 5 6 7 8 9 0 )
 
     # Create an array of "special" characters
-    CHARS=( ! . )
+    CHARS=( ! . ? )
 
     MOD_WORD=${#WORDS[*]}
     MOD_NUM=${#NUMBERS[*]}
@@ -59,7 +59,7 @@ function create_password {
     IDX_CHAR=$((${RANDOM}%${MOD_CHAR}))
 
     LENGTH=0
-    while [ ${LENGTH} -lt 2 ]; do
+    while [ ${LENGTH} -lt 4 ]; do
         IDX_WORD=$((${RANDOM}%${MOD_WORD}))
         echo -n "${WORDS[${IDX_WORD}]}"
         ((LENGTH++))
