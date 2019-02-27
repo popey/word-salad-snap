@@ -1,0 +1,19 @@
+name: word-salad
+base: core18
+version: '0.1'
+summary: Word Salad - Password Generator
+description: |
+  Generates simple passwords by combining short words
+  numbers and symbols.
+
+grade: stable
+confinement: strict 
+
+parts:
+  word-salad:
+    plugin: dump
+    source: .
+
+apps:
+  word-salad:
+    command: word-salad
