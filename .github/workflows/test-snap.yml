@@ -1,0 +1,27 @@
+name: Build and test snap
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+jobs:
+  snap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: snapcore/action-build@v1
+        id: build
+      - uses: diddlesnaps/snapcraft-review-action@v1
+        with:
+          snap: ${{ steps.build.outputs.snap }}
+          isClassic: 'false'
+      - name: Install and exercise command
+        run: |
+          sudo snap install --dangerous "${{ steps.build.outputs.snap }}"
+          python3 scripts/smoke-test.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: snap-and-logs
+          path: |
+            ${{ steps.build.outputs.snap }}
+            artifacts/

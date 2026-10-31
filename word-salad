@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+if (( $# )); then
+    case "$1" in
+        --help|-h)
+            printf 'Usage: word-salad\nGenerate four short words with a digit and punctuation.\n'
+            exit 0
+            ;;
+        *) printf 'Unknown argument: %s\n' "$1" >&2; exit 2 ;;
+    esac
+fi
+
 # Creates a pseudo random password
 function create_password {
     # Create an array of 3 letter words
