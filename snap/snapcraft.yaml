@@ -1,5 +1,5 @@
 name: word-salad
-base: core18
+base: core24
 version: '0.1'
 summary: Word Salad - Password Generator
 description: |
@@ -13,6 +13,8 @@ parts:
   word-salad:
     plugin: dump
     source: .
+    stage:
+      - word-salad
 
 apps:
   word-salad:
